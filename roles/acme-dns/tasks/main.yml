@@ -1,0 +1,31 @@
+---
+- name: create directory
+  file:
+    path: /home/docker/docker-compose.d
+    state: directory
+    owner: docker
+    group: users
+
+- name: get source
+  git:
+    repo: https://github.com/joohoi/acme-dns
+    dest: /home/docker/docker-compose.d/acme-dns
+
+- name: create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /home/docker/docker-compose.d/acme-dns/config
+    - /home/docker/docker-compose.d/acme-dns/data
+
+- name: put config/config.cfg
+  template:
+    src: home/docker/docker-compose.d/acme-dns/config/config.cfg.j2
+    dest: /home/docker/docker-compose.d/acme-dns/config/config.cfg
+
+- name: start docker containers
+  docker_compose:
+    project_src: /home/docker/docker-compose.d/acme-dns
+    build: yes
+    state: present

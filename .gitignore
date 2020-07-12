@@ -1,0 +1,5 @@
+/.vagrant
+/site.retry
+
+/inventories/production/group_vars/all.yml
+/inventories/production/hosts

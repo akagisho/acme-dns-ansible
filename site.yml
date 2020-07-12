@@ -1,0 +1,7 @@
+---
+- hosts: acme-dns
+  become: yes
+  roles:
+    - ubuntu18-common
+    - docker
+    - acme-dns

@@ -1,0 +1,8 @@
+---
+acme_dns:
+  protocol: both
+  tls: letsencrypt
+  hostname: acme-dns.example.com
+  zone: acme-dns.example.com
+  ipaddr: 203.0.113.10
+  mail: admin.example.com
